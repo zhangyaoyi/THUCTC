@@ -11,27 +11,15 @@ public class Demo {
 	 */
 	public static void runTrainAndTest() {
 		
-		// 新建分类器对象
 		BasicTextClassifier classifier = new BasicTextClassifier();
-		
-		// 设置参数
 		String defaultArguments = ""
-			 + "-train 书库_cleared "  // 设置您的训练路径，这里的路径只是给出样例
-			 + "-test 书库_cleared " 
-				//	+ "-l C:\\Users\\do\\workspace\\TestJar\\my_novel_model "
-				//	+ "-cdir E:\\Corpus\\书库_cleared "
-				//	+ "-n 1 "
-			// + "-classify E:\\Corpus\\书库_cleared\\言情小说 "  // 设置您的测试路径。一般可以设置为与训练路径相同，即把所有文档放在一起。
+			 + "-train /Users/freedom/Desktop/THUCTC/THUCNews "  // 设置您的训练路径，这里的路径只是给出样例
+			 + "-test /Users/freedom/Desktop/THUCTC/THUCNews "
 			 + "-d1 0.7 "  // 前70%用于训练
 			 + "-d2 0.3 "  // 后30%用于测试
 			 + "-f 35000 " // 设置保留特征数，可以自行调节以优化性能
-			+  "-s ./my_novel_model"  // 将训练好的模型保存在硬盘上，便于以后测试或部署时直接读取模型，无需训练
-			 ;
-		
-		// 初始化
+			 + "-s ./model";  // 将训练好的模型保存在硬盘上，便于以后测试或部署时直接读取模型，无需训练
 		classifier.Init(defaultArguments.split(" "));
-		
-		// 运行
 		classifier.runAsBigramChineseTextClassifier();
 		
 	}
