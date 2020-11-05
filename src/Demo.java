@@ -16,7 +16,7 @@ public class Demo {
                 + "-test /Users/freedom/Desktop/THUCTC/THUCNews "
                 + "-d1 0.7 "  // 前70%用于训练
                 + "-d2 0.3 "  // 后30%用于测试
-                + "-f 35000 " // 设置保留特征数，可以自行调节以优化性能
+                + "-f 50000 " // 设置保留特征数，可以自行调节以优化性能
                 + "-s ./model";  // 将训练好的模型保存在硬盘上，便于以后测试或部署时直接读取模型，无需训练
         classifier.Init(defaultArguments.split(" "));
         classifier.runAsBigramChineseTextClassifier();
@@ -34,7 +34,7 @@ public class Demo {
         classifier.setTextClassifier(new LinearBigramChineseTextClassifier(classifier.getCategorySize()));
         classifier.getTextClassifier().loadModel("model");
 
-        String text = "十年期美债收益率跌至10月中旬以来低位的0.72%，日内跌4个基点。";
+        String text = "【国资委：切实抓好国企改革三年行动落实落地】11月4日，国资委党委书记、主任郝鹏到中国铁建宣讲党的十九届五中全会和习近平总书记重要讲话精神。郝鹏指出，要切实抓好国企改革三年行动落实落地，加快完善中国特色现代企业制度，坚定不移做强做优做大，加快建设卓越的世界一流综合性建筑企业，为发挥国有经济战略支撑作用贡献力量。";
         int topN = 3;
         ClassifyResult[] result = classifier.classifyText(text, topN);
         for (int i = 0; i < result.length; ++i) {
